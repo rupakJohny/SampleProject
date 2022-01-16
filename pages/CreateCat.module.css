@@ -1,0 +1,30 @@
+.head {
+    margin: auto;
+    margin-top: 10em;
+    border-bottom-right-radius: 0%;
+    border-bottom-left-radius: 0%;
+    box-shadow: 0 1px 8px rgba(247, 247, 247, 0.2);
+    width: 40rem;
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: left;
+    background-color: #2a292b;
+    color: #f4f0fa;
+}
+
+.base {
+    margin-top: 0%;
+    margin: auto;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
+    width: 40rem;
+    border-radius: 10px;
+    border-top-left-radius: 0%;
+    border-top-right-radius: 0%;
+    padding: 1rem;
+    text-align: left;
+    background-color: #f4f0fa;
+}
+
+.backbtn {
+    text-align: right;
+}

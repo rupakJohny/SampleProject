@@ -30,7 +30,7 @@ const dispatch=useDispatch();
       "email": email,
       "password": password,
     };
-    let authenticateAPI = await axios.post("http://devapi.carowlers.com/api/authenticate", reqBody);
+    let authenticateAPI = await axios.post("http://5.189.137.25/api/authenticate", reqBody);
     console.log(authenticateAPI);
     if (authenticateAPI.status === 200) {
       let token=authenticateAPI.data.id_Token;

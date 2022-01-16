@@ -1,21 +1,21 @@
 import { useSelector } from "react-redux";
-
-import Login from "../components/LoginForm";
+import Login from "./LoginForm";
 import Header from "../components/Header";
 import { Fragment } from "react";
-import Homepage from "../components/HomePage";
+import Homepage from "./HomePage";
+import CreateCat from "./CreateNew";
 
-const login=()=>{
-    const isAuth= useSelector(state=>state.auth.isAuthenticated);
 
-    return(      
-         
+const login = () => {
+    const isAuth = useSelector(state => state.auth.isAuthenticated);
+    return (
         <Fragment>
-        <Header/>
-        {!isAuth && <Login/>}
-        {isAuth && <Homepage/>}
+            <Header />
+            {!isAuth && <Login />}
+            {isAuth && <Homepage />}
         </Fragment>
-        
+
     )
 }
 export default login
+
