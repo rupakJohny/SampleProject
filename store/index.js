@@ -10,9 +10,11 @@ const authSlice=createSlice({
     reducers:{
         login(state){
             state.isAuthenticated=true;
+            return state;
         },
         logout(state){
             state.isAuthenticated=false;
+            return state;
         }
     }
 });

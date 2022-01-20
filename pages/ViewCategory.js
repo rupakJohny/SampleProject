@@ -1,12 +1,26 @@
-import Header from "./Header"
-import { Fragment, useState } from 'react';
+import Header from "../components/Header"
+import { useSelector } from "react-redux";
+import { Fragment, useEffect, useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 
 const ViewCategory=()=>{
-    const [Items, setItemdata] = useState([]);
-    const accessToken = localStorage.getItem('token');
+    const isAuth= useSelector(state=>state.auth.isAuthenticated);
+    
+    console.log(isAuth)
+
+
+    /*const [Items, setItemdata] = useState([]);
+    const[accessToken, setAccessToken]=useState();
     const apiURL = 'http://5.189.137.25/api'
+
+    useEffect(()=>{
+        
+        const token=localStorage.getItem('token');
+        setAccessToken(token);
+        FetchData()
+    
+    },[])
 
     const authHeader = axios.create({
         baseURL: apiURL,
@@ -32,15 +46,13 @@ const ViewCategory=()=>{
     async function onDelete(Id) {
         await authHeader.put('/category/delete/' + Id);
         FetchData();
-    }
+    }*/
 
 
     return(
         <Fragment>
-            <Header />
+        {isAuth &&
             <div>
-                <h1>Welcome</h1>
-                <button onClick={FetchData}>Go!!</button>
                 <button><Link href='/CreateNew'>Create</Link></button>
                 <div className='container'>
                     <table className='table table-stripped'>
@@ -68,6 +80,9 @@ const ViewCategory=()=>{
                     </table>
                 </div>
             </div>
+            }
+            {!isAuth &&
+            <h2>Not Auth</h2>}
         </Fragment>
 
     )

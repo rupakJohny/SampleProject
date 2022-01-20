@@ -5,6 +5,7 @@ import { Fragment } from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { authActions } from '../store'
+import Cookie from 'js-cookie'
 const Login = () => {
   
 const dispatch=useDispatch();
@@ -35,6 +36,7 @@ const dispatch=useDispatch();
     if (authenticateAPI.status === 200) {
       let token=authenticateAPI.data.id_Token;
       console.log(token);
+      Cookie.set("token", token);
       localStorage.setItem("token", token);
       dispatch(authActions.login())
     }

@@ -1,18 +1,19 @@
 import { useSelector } from "react-redux";
 import Login from "./LoginForm";
-import Header from "../components/Header";
 import { Fragment } from "react";
-import Homepage from "./HomePage";
-import CreateCat from "./CreateNew";
+import dynamic from "next/dynamic";
 
+const Homepage = dynamic(() => import('./HomePage'), { ssr: false });
+const Header = dynamic(() => import('../components/Header'), { ssr: false });
 
 const login = () => {
     const isAuth = useSelector(state => state.auth.isAuthenticated);
     return (
         <Fragment>
-            <Header />
-            {!isAuth && <Login />}
-            {isAuth && <Homepage />}
+            <div>
+                {!isAuth && <Login />}
+                {isAuth && <Homepage />} 
+                </div>           
         </Fragment>
 
     )

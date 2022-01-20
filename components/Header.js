@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import { useDispatch } from 'react-redux';
 import { authActions } from '../store';
-import ViewCategory from "./ViewCategory";
+import ViewCategory from "../pages/ViewCategory";
 import classes from './Header.module.css';
 import { useEffect } from "react";
 
@@ -23,7 +23,9 @@ const Header = () => {
       {isAuth && (
       <nav>
         <ul>
-         
+         <li>
+         <a href='/ViewCategory'>My Category</a>
+         </li>
           <li>
             <a href='/'>My Sales</a>
           </li>

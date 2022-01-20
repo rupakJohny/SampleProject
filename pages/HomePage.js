@@ -1,16 +1,22 @@
+import { Fragment, useEffect, useState } from 'react';
 import classes from './HomePage.module.css';
-import { Fragment, useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
-import Header from '../components/Header'
-import CreateCat from './CreateNew';
-
 
 const Homepage = () => {
 
     const [Items, setItemdata] = useState([]);
-    const accessToken = localStorage.getItem('token');
+    //const[accessToken, setAccessToken]=useState('');
+    const accessToken=localStorage.getItem('token');
     const apiURL = 'http://5.189.137.25/api'
+
+    
+    
+        
+    
+        
+    
+    
 
     const authHeader = axios.create({
         baseURL: apiURL,
@@ -19,9 +25,15 @@ const Homepage = () => {
         },
     })
 
-    async function FetchData() {
+    async function FetchCatData() {
         const res = await authHeader.get('/category');
         const loadedData = res.data;
+        console.log(loadedData);
+        setItemdata(loadedData);
+    }
+    async function FetchSubCatData() {
+        const res = await authHeader.get('/subcategory');
+        const loadedData = res.data.item1;
         console.log(loadedData);
         setItemdata(loadedData);
     }
@@ -35,16 +47,18 @@ const Homepage = () => {
 
     async function onDelete(Id) {
         await authHeader.put('/category/delete/' + Id);
-        FetchData();
+        FetchCatData();
     }
 
     return (
         <Fragment>
-            <Header />
             <div className={classes.home}>
                 <h1>Welcome</h1>
-                <button onClick={FetchData}>Go!!</button>
-                <button><Link href='/CreateNew'>Create</Link></button>
+                <div>
+                <button><Link href='/CreateCat'>Create</Link></button>
+                <button><Link href='/CreateSubCat'>Create Sub</Link></button>
+                <button onClick={FetchCatData}>GO Cat</button>
+                <button onClick={FetchSubCatData}>GO Sub Cat</button>
                 <div className='container'>
                     <table className='table table-stripped'>
                         <thead>
@@ -64,7 +78,7 @@ const Homepage = () => {
                                     <td>
                                         <button onClick={()=>{
                                             localStorage.setItem('CurrentID', data.id)
-                                        }}><Link href='/Update'>Update</Link></button>
+                                        }}><Link href='/UpdateSubCat'>Update</Link></button>
                                         <button onClick={() => onDelete(data.id)}>Delete</button>
                                     </td>
                                 </tr>
@@ -73,8 +87,8 @@ const Homepage = () => {
                     </table>
                 </div>
             </div>
+            </div>
         </Fragment>
-
     )
 }
 
